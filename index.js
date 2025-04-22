@@ -2,8 +2,12 @@ const { GatewayIntentBits, Client } = require("discord.js");
 const { token } = require('./config.json');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { DisTube } = require("distube");
-const play = require('./commands/play');
 const { prefix } = require('./config.json');
+const { YouTubePlugin } = require("@distube/youtube");
+const playSong = require("./events/playSong");
+const addSong = require("./events/addSong");
+const play = require('./commands/play');
+const skip = require('./commands/skip');
 
 let client = new Client({
     intents: [
@@ -20,30 +24,43 @@ client.once('ready', () => {
 });
 
 client.distube = new DisTube(client, {
-    emitAddListWhenCreatingQueue: true,
-    emitAddSongWhenCreatingQueue: true,
+    emitAddListWhenCreatingQueue: false,
+    emitAddSongWhenCreatingQueue: false,
     emitNewSongOnly: false,
     nsfw: false,
     joinNewVoiceChannel: true,
     savePreviousSongs: true,
-    plugins: [new YtDlpPlugin()]
+    plugins: [new YtDlpPlugin(), new YouTubePlugin]
 });
-
 
 client.on('messageCreate', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
+    switch (command) {
+        case 'play' || 'p':
+            play(client, message, args);
+            break;
+        case 'stop':
+            client.distube.stop(message.guild.id);
+            break;
+        case 'skip':
+            skip(client, message);
+            break;
+        case 'queue' || 'q':
+            let queue = client.distube.getQueue(message.guild.id).songs;
+            let songList = queue.map((song, index) => {
+                return `${index + 1}. ${song.name} - ${song.formattedDuration}`;
+            }).join('\n');
 
-    if (command === 'play') {
-        play(client, message, args);
-    }
-    if (command === 'stop') {
-        client.distube.stop(message.guild.id);
-    }
-    if(command === 'skip') {
-        client.distube.skip(message.guild.id);
+            message.channel.send(`***Danh sách bài hát hiện tại:\n${songList}***`);
+            break;
+        default:
+            break;
     }
 });
+
+playSong(client);
+addSong(client);
 
 client.login(token);
