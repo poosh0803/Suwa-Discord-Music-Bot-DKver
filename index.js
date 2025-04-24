@@ -4,6 +4,7 @@ const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { DisTube } = require("distube");
 const { prefix } = require('./config.json');
 const { YouTubePlugin } = require("@distube/youtube");
+const { cookies } = require("./config.json");
 const playSong = require("./events/playSong");
 const addSong = require("./events/addSong");
 const play = require('./commands/play');
@@ -30,7 +31,7 @@ client.distube = new DisTube(client, {
     nsfw: false,
     joinNewVoiceChannel: true,
     savePreviousSongs: true,
-    plugins: [new YtDlpPlugin(), new YouTubePlugin]
+    plugins: [new YtDlpPlugin({ cookies: cookies }), new YouTubePlugin({ cookies: cookies })]
 });
 
 client.on('messageCreate', (message) => {
@@ -38,7 +39,7 @@ client.on('messageCreate', (message) => {
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     switch (command) {
-        case 'play' || 'p':
+        case 'play':
             play(client, message, args);
             break;
         case 'stop':
@@ -47,7 +48,7 @@ client.on('messageCreate', (message) => {
         case 'skip':
             skip(client, message);
             break;
-        case 'queue' || 'q':
+        case 'queue':
             let queue = client.distube.getQueue(message.guild.id).songs;
             let songList = queue.map((song, index) => {
                 return `${index + 1}. ${song.name} - ${song.formattedDuration}`;
