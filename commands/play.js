@@ -1,13 +1,14 @@
 
 const ytsr = require('@distube/ytsr');
+const simpleReply = require('../components/simpleReply');
 
 async function play(client, message, args) {
     let query = args.join(" ");
     const voice = message.member.voice.channel;
     if (!voice)
-        return message.reply('Vui lòng vào voice để bắt đầu phát nhạc!');
+        return simpleReply('Vui lòng vào voice để bắt đầu phát nhạc!', message);
     if (!query)
-        return message.reply('Vui lòng điền tên bài hát hoặc link');
+        return simpleReply('Vui lòng điền tên bài hát hoặc link', message);
 
 
 
@@ -15,20 +16,19 @@ async function play(client, message, args) {
     if (result.results >= 1) {
         query = result.items[0].url;
     } else {
-        return message.reply('Không tìm thấy bài hát này');
+        return simpleReply('Không tìm thấy bài hát này', message);
     }
 
 
     try {
-        client.distube.play(voice, query, {
+        return client.distube.play(voice, query, {
             textChannel: message.channel,
             member: message.member,
             position: 0,
         });
     } catch (error) {
         console.log(error);
-        message.reply('Lỗi khi phát nhạc!');
-        return message.reply(error);
+        return;
     }
 }
 

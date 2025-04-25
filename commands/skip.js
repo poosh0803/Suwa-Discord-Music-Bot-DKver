@@ -1,26 +1,24 @@
 const { EmbedBuilder } = require('discord.js');
-const  stop  = require('./stop');
+const stop = require('./stop');
+const simpleReply = require('../components/simpleReply');
 
 function skip(client, message) {
     try {
 
         const queue = client.distube.getQueue(message.guild.id);
         if (!queue || queue.songs.length <= 1) {
-            return message.reply('Không có bài hát nào tiếp theo để bỏ qua!');
+            simpleReply('Không có bài hát nào tiếp theo để bỏ qua!', message);
+            return stop(client, message);
         }
 
         client.distube.skip(message.guild.id);
-        const embed = new EmbedBuilder()
-            .setColor(0xe6a65e)
-            .setTitle('Đã skip nha!!')
-        message.reply({ embeds: [embed] }); 
+        return simpleReply('Đã skip nha!', message);
     } catch (error) {
         if (error.message === 'NO_UP_NEXT') {
-            message.reply('Không có bài hát nào tiếp theo!');
-            stop(client, message);
-        } else {
-            message.reply('Đã xảy ra lỗi khi bỏ qua bài hát.');
-            console.error(error);
+            simpleReply('Không có bài hát tiếp theo!', message);
+            return stop(client, message);
+        } else if (error.messsage === 'NO_QUEUE') {
+            return;
         }
     }
 }

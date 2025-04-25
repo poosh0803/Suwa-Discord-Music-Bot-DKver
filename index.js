@@ -1,15 +1,18 @@
 const { GatewayIntentBits, Client } = require("discord.js");
 const { token } = require('./config.json');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
-const { DisTube } = require("distube");
+const { DisTube, RepeatMode } = require("distube");
 const { prefix } = require('./config.json');
 const { cookies } = require("./config.json");
+const repeat = require("./commands/repeat");
 const playSong = require("./events/playSong");
 const addSong = require("./events/addSong");
 const play = require('./commands/play');
 const skip = require('./commands/skip');
 const queue = require('./commands/queue');
 const stop = require('./commands/stop');
+
+var repeatMode = 0;
 
 let client = new Client({
     intents: [
@@ -50,8 +53,16 @@ client.on('messageCreate', (message) => {
             skip(client, message);
             break;
         case 'queue':
+
             queue(client, message);
             break;
+        case 'repeat':
+            repeatMode++;
+            if(repeatMode > 2) {
+                repeatMode = 0;
+            }
+            repeat(client, message.guildId, repeatMode, message)
+        break;
         default:
             break;
     }

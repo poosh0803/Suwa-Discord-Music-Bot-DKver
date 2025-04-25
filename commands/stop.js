@@ -5,7 +5,7 @@ function stop(client, message) {
     const embed = new EmbedBuilder()
     .setColor(0xe6a65e)
     .setTitle('🛑 Đã dừng bot')
-    message.channel.send({ embeds: [embed] });
+    return message.reply({ embeds: [embed] });
 }
 
 module.exports = stop

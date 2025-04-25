@@ -1,9 +1,10 @@
 const { EmbedBuilder } = require('discord.js');
+const  simpleReply  = require('../components/simpleReply');
 
 function queue(client, message) {
     const musicQueue = client.distube.getQueue(message.guild.id);
     if (!musicQueue || !musicQueue.songs.length) {
-        return message.channel.send('Không có bài hát nào trong hàng chờ.');
+        return simpleReply('Không có bài hát nào trong danh sách hàng chờ', message);
     }
 
     const songs = musicQueue.songs;
@@ -20,7 +21,7 @@ function queue(client, message) {
         .setTitle('Danh sách phát')
         .setDescription(songList)
         .setFooter({ text: `Tổng: ${songs.length} bài hát`, iconURL: message.guild.iconURL() });
-    message.channel.send({ embeds: [embed] });
+    message.reply({ embeds: [embed] });
 }
 
 module.exports = queue;
