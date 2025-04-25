@@ -1,11 +1,19 @@
+
+const { EmbedBuilder } = require('discord.js')
 function playSong(client) {
     client.distube.on('playSong', (queue, song) => {
-        let name = song.name;
-        let formattedDuration = song.formattedDuration;
-        let textChannel = queue.textChannel;
-        textChannel.send(`***Bắt đầu phát: ${name} - ${formattedDuration}***`);
-    })
+        const embed = new EmbedBuilder()
+            .setColor(0xe6a65e)
+            .setTitle('🎶 Bắt đầu phát nhạc')
+            .setDescription(`**${song.name}**\nThời lượng: \`${song.formattedDuration}\``)
+            .setThumbnail(song.thumbnail || null)
+            .setFooter({
+                text: `Yêu cầu bởi: ${song.user?.username || 'Unknown'}`,
+                iconURL: song.user?.displayAvatarURL() || null
+            });
 
+        queue.textChannel.send({ embeds: [embed] });
+    });
 }
 
 module.exports = playSong;
