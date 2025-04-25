@@ -1,13 +1,24 @@
 
+const ytsr = require('@distube/ytsr');
 
-function play(client, message, args) {
-    const query = args.join(" ");
-
+async function play(client, message, args) {
+    let query = args.join(" ");
     const voice = message.member.voice.channel;
     if (!voice)
         return message.reply('Vui lòng vào voice để bắt đầu phát nhạc!');
     if (!query)
         return message.reply('Vui lòng điền tên bài hát hoặc link');
+
+
+
+    const result = await ytsr(query, { safeSearch: true, limit: 1 });
+    if (result.results >= 1) {
+        query = result.items[0].url;
+    } else {
+        return message.reply('Không tìm thấy bài hát này');
+    }
+
+
     try {
         client.distube.play(voice, query, {
             textChannel: message.channel,

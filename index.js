@@ -3,7 +3,6 @@ const { token } = require('./config.json');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { DisTube } = require("distube");
 const { prefix } = require('./config.json');
-const { YouTubePlugin } = require("@distube/youtube");
 const { cookies } = require("./config.json");
 const playSong = require("./events/playSong");
 const addSong = require("./events/addSong");
@@ -33,7 +32,7 @@ client.distube = new DisTube(client, {
     nsfw: false,
     joinNewVoiceChannel: true,
     savePreviousSongs: true,
-    plugins: [new YtDlpPlugin({ cookies: cookies }), new YouTubePlugin({ cookies: cookies })]
+    plugins: [new YtDlpPlugin({ cookies: cookies })]
 });
 
 client.on('messageCreate', (message) => {

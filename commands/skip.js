@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
+const  stop  = require('./stop');
 
 function skip(client, message) {
     try {
@@ -12,10 +13,11 @@ function skip(client, message) {
         const embed = new EmbedBuilder()
             .setColor(0xe6a65e)
             .setTitle('Đã skip nha!!')
-        message.reply({ embeds: [embed] });
+        message.reply({ embeds: [embed] }); 
     } catch (error) {
         if (error.message === 'NO_UP_NEXT') {
-            message.reply('Không có bài hát nào tiếp theo để bỏ qua!');
+            message.reply('Không có bài hát nào tiếp theo!');
+            stop(client, message);
         } else {
             message.reply('Đã xảy ra lỗi khi bỏ qua bài hát.');
             console.error(error);
