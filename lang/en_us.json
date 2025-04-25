@@ -1,0 +1,27 @@
+{
+    "user_not_in_voice": "Please join a voice channel to start playing music!",
+    "no_query": "Please provide a song name or link",
+    "song_not_found": "This song could not be found",
+
+    "queue_list": "Queue list",
+    "no_song_in_queue": "There are no songs in the queue",
+    "queue_currently_playing": "Now playing",
+    "total_songs_in_queue": "Total",
+    "songs": "songs",
+    
+    "repeat_mode": "Repeat mode",
+    "repeat_mode_off": "Off",
+    "repeat_mode_song": "Song",
+    "repeat_mode_queue": "Queue",
+
+    "no_song_to_skip": "No next song to skip!",
+    "skipped": "Skipped!",
+    "no_song_up_next": "No song up next!",
+    "stopped": "Stopped the bot",
+
+
+    "added_song": "Added song",
+    "song_duration": "Duration",
+    "requested_by": "Requested by",
+    "start_playing": "Start playing music"
+}

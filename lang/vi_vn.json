@@ -1,0 +1,29 @@
+{
+    "user_not_in_voice": "Vui lòng vào voice để bắt đầu phát nhạc!",
+    "no_query": "Vui lòng điền tên bài hát hoặc link",
+    "song_not_found": "Không tìm thấy bài hát này",
+
+    "queue_list": "Danh sách phát",
+    "no_song_in_queue": "Không có bài hát nào trong danh sách hàng chờ",
+    "queue_currently_playing": "Đang phát",
+    "total_songs_in_queue": "Tổng",
+    "songs": "bài hát",
+    
+    "repeat_mode": "Chế độ lặp lại",
+    "repeat_mode_off": "Tắt",
+    "repeat_mode_song": "Bài hát",
+    "repeat_mode_queue": "Hàng chờ",
+
+    "no_song_to_skip": "Không có bài hát nào tiếp theo để bỏ qua!",
+    "skipped": "Đã skip nha!",
+    "no_song_up_next": "Không có bài hát tiếp theo!",
+    "stopped": "Đã dừng bot",
+
+
+    "added_song": "Đã thêm bài hát",
+    "song_duration": "Thời lượng",
+    "requested_by": "Yêu cầu bởi",
+    "start_playing": "Bắt đầu phát nhạc"
+
+    
+}

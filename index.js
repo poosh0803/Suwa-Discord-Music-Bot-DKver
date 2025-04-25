@@ -1,9 +1,13 @@
+const {intializeLang} = require("./langManager");
+intializeLang('vi_vn'); //change this to en_us to display English :wink:
+
+
 const { GatewayIntentBits, Client } = require("discord.js");
 const { token } = require('./config.json');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { DisTube, RepeatMode } = require("distube");
 const { prefix } = require('./config.json');
-const { cookies } = require("./config.json");
+const { cookies } = require("./config.json"); 
 const repeat = require("./commands/repeat");
 const playSong = require("./events/playSong");
 const addSong = require("./events/addSong");
@@ -11,6 +15,7 @@ const play = require('./commands/play');
 const skip = require('./commands/skip');
 const queue = require('./commands/queue');
 const stop = require('./commands/stop');
+
 
 var repeatMode = 0;
 
@@ -35,7 +40,7 @@ client.distube = new DisTube(client, {
     nsfw: false,
     joinNewVoiceChannel: true,
     savePreviousSongs: true,
-    plugins: [new YtDlpPlugin({ cookies: cookies })]
+    plugins: [new YtDlpPlugin({ cookies: cookies })] 
 });
 
 client.on('messageCreate', (message) => {

@@ -1,14 +1,18 @@
 
 const ytsr = require('@distube/ytsr');
 const simpleReply = require('../components/simpleReply');
+const {getLang} = require("../langManager");
+
+lang = getLang();
 
 async function play(client, message, args) {
     let query = args.join(" ");
+    console.log();
     const voice = message.member.voice.channel;
     if (!voice)
-        return simpleReply('Vui lòng vào voice để bắt đầu phát nhạc!', message);
+        return simpleReply(`${lang.user_not_in_voice}`, message);
     if (!query)
-        return simpleReply('Vui lòng điền tên bài hát hoặc link', message);
+        return simpleReply(`${lang.no_query}`, message);
 
 
 
@@ -16,7 +20,7 @@ async function play(client, message, args) {
     if (result.results >= 1) {
         query = result.items[0].url;
     } else {
-        return simpleReply('Không tìm thấy bài hát này', message);
+        return simpleReply(`${lang.song_not_found}`, message);
     }
 
 
