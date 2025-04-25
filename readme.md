@@ -90,13 +90,15 @@ _Following these steps in order to setup the bot properly:_
   Currently, English and Vietnamese are supported, you can make your own lang file inside of `lang` folder. 
 
 5. Run the bot
-At the root directory, run:
+  At the root directory, run:
 
-   ```sh
-   node index.js
-   or
-   npm run start
-   ```
+    ```sh
+    node index.js
+    or
+    npm run start
+     ```
+
+   
 <p align="right">(<a href="#readme-top">Go to top</a>)</p>
 
 
