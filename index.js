@@ -10,6 +10,7 @@ const addSong = require("./events/addSong");
 const play = require('./commands/play');
 const skip = require('./commands/skip');
 const queue = require('./commands/queue');
+const stop = require('./commands/stop');
 
 let client = new Client({
     intents: [
@@ -44,7 +45,7 @@ client.on('messageCreate', (message) => {
             play(client, message, args);
             break;
         case 'stop':
-            client.distube.stop(message.guild.id);
+            stop(client, message)
             break;
         case 'skip':
             skip(client, message);
