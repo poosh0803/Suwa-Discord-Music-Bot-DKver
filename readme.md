@@ -84,20 +84,22 @@ _Following these steps in order to setup the bot properly:_
     }
     ```
    
-4. Setting Languages (Optional)
-  Go into `index.js` and  modify this line below to change languages
-  <img src="https://i.imgur.com/bYKno7C.png">
-  Currently, English and Vietnamese are supported, you can make your own lang file inside of `lang` folder. 
+4. Setting Languages (Optional)  
+Go into `index.js` and modify this line below to change languages  
+<img src="https://i.imgur.com/bYKno7C.png">  
+Currently, English and Vietnamese are supported. You can make your own lang file inside of the `lang` folder.
+
+---
 
 5. Run the bot
-  At the root directory, run:
 
-    ```sh
-    node index.js
-    or
-    npm run start
-     ```
+At the root directory, run:
 
+```sh
+node index.js
+# or
+npm run start
+```
    
 <p align="right">(<a href="#readme-top">Go to top</a>)</p>
 
