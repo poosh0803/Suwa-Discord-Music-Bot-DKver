@@ -1,3 +1,4 @@
+
 function addSong(client) {
     client.distube.on('addSong', (queue, song) => {
         let name = song.name;

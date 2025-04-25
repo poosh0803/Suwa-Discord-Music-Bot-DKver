@@ -9,6 +9,7 @@ const playSong = require("./events/playSong");
 const addSong = require("./events/addSong");
 const play = require('./commands/play');
 const skip = require('./commands/skip');
+const queue = require('./commands/queue');
 
 let client = new Client({
     intents: [
@@ -49,12 +50,7 @@ client.on('messageCreate', (message) => {
             skip(client, message);
             break;
         case 'queue':
-            let queue = client.distube.getQueue(message.guild.id).songs;
-            let songList = queue.map((song, index) => {
-                return `${index + 1}. ${song.name} - ${song.formattedDuration}`;
-            }).join('\n');
-
-            message.channel.send(`***Danh sách bài hát hiện tại:\n${songList}***`);
+            queue(client, message);
             break;
         default:
             break;
