@@ -19,7 +19,7 @@
     "no_song_up_next": "No song up next!",
     "stopped": "Stopped the bot",
 
-
+    "loading_song": "Loading song",
     "added_song": "Added song",
     "song_duration": "Duration",
     "requested_by": "Requested by",

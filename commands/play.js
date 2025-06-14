@@ -14,7 +14,7 @@ async function play(client, message, args) {
     if (!query)
         return simpleReply(`${lang.no_query}`, message);
 
-
+    const loadingMessage = await message.channel.send('🎶 Loading song...');
 
     const result = await ytsr(query, { safeSearch: true, limit: 1 });
     if (result.results >= 1) {
@@ -22,7 +22,7 @@ async function play(client, message, args) {
     } else {
         return simpleReply(`${lang.song_not_found}`, message);
     }
-    
+
     try {
         return client.distube.play(voice, query, {
             textChannel: message.channel,
