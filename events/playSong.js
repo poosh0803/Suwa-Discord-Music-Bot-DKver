@@ -1,10 +1,18 @@
 
 const { EmbedBuilder } = require('discord.js')
 const {getLang} = require("../langManager");
+const loadingMessages = require('./messageStore');
 let lang =  getLang();
 
 function playSong(client) {
     client.distube.on('playSong', (queue, song) => {
+        const loadingMessage = loadingMessages.get(queue.textChannel.guild.id);
+        if (loadingMessage) {
+            loadingMessage.delete()
+            .catch(console.error);
+            // Optionally remove the message from map after edit
+            loadingMessages.delete(queue.textChannel.guild.id);
+        }
         const embed = new EmbedBuilder()
             .setColor(0xe6a65e)
             .setTitle(`🎶 ${lang.start_playing}`)

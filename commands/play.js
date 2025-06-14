@@ -2,6 +2,7 @@
 const ytsr = require('@distube/ytsr');
 const simpleReply = require('../components/simpleReply');
 const {getLang} = require("../langManager");
+const loadingMessages = require('./messageStore');
 
 lang = getLang();
 
@@ -15,6 +16,7 @@ async function play(client, message, args) {
         return simpleReply(`${lang.no_query}`, message);
 
     const loadingMessage = await message.channel.send('🎶 Loading song...');
+    loadingMessages.set(message.guild.id, loadingMessage);
 
     const result = await ytsr(query, { safeSearch: true, limit: 1 });
     if (result.results >= 1) {
