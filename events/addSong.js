@@ -8,7 +8,7 @@ function addSong(client) {
         const embed = new EmbedBuilder()
             .setColor(0xe6a65e)
             .setTitle(`🎶 ${lang.added_song}`)
-            .setDescription(`**${song.name}**\n${lang.song_duration}: \`${song.formattedDuration}\``)
+            .setDescription(`[**${song.name}**](${song.url})\n${lang.song_duration}: \`${song.formattedDuration}\``)
             .setThumbnail(song.thumbnail || null)
             .setFooter({
                 text: `${lang.requested_by}: ${song.user?.username || 'Unknown'}`,
