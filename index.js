@@ -40,7 +40,16 @@ client.distube = new DisTube(client, {
     nsfw: false,
     joinNewVoiceChannel: true,
     savePreviousSongs: true,
-    plugins: [new YtDlpPlugin({ cookies: cookies })] 
+    plugins: [
+        new YtDlpPlugin({
+      cookies: cookies,
+      update: false,
+      exec: 'yt-dlp',
+      streamOptions: {
+        highWaterMark: 1 << 25 // 32 MB buffer
+      }
+    })
+    ] 
 });
 
 client.on('messageCreate', (message) => {
