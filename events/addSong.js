@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const { getLang } = require("../langManager");
-const loadingMessages = require('./messageStore');
+const loadingMessages = require('../commands/messageStore');
 let lang = getLang();
 
 
