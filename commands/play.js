@@ -22,6 +22,8 @@ async function play(client, message, args) {
     if (result.results >= 1) {
         query = result.items[0].url;
     } else {
+        loadingMessage.delete()
+        loadingMessages.delete(queue.textChannel.guild.id);
         return simpleReply(`${lang.song_not_found}`, message);
     }
 
