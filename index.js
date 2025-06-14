@@ -1,5 +1,5 @@
 const {intializeLang} = require("./langManager");
-intializeLang('vi_vn'); //change this to en_us to display English :wink:
+intializeLang('en_us'); //change this to en_us to display English :wink:
 
 
 const { GatewayIntentBits, Client } = require("discord.js");
@@ -70,6 +70,12 @@ client.on('messageCreate', (message) => {
         break;
         default:
             break;
+    }
+    // Try to delete the user's command message
+    try {
+      message.delete();
+    } catch (err) {
+      console.error('Failed to delete message:', err);
     }
 });
 

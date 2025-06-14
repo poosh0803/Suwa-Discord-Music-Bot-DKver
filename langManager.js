@@ -6,7 +6,7 @@ function intializeLang(lang_code = 'en_us') {
     if(fs.existsSync(path)) {
         lang = JSON.parse(fs.readFileSync(path, 'utf8'));
     } else {
-        lang = JSON.parse(fs.readFileSync('./lang/vi_vn.json', 'utf8'));
+        lang = JSON.parse(fs.readFileSync('./lang/en_us.json', 'utf8'));
     }
 }
 

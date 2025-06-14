@@ -22,8 +22,7 @@ async function play(client, message, args) {
     } else {
         return simpleReply(`${lang.song_not_found}`, message);
     }
-
-
+    
     try {
         return client.distube.play(voice, query, {
             textChannel: message.channel,
