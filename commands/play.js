@@ -2,7 +2,7 @@
 const ytsr = require('@distube/ytsr');
 const simpleReply = require('../components/simpleReply');
 const {getLang} = require("../langManager");
-const loadingMessages = require('./messageStore');
+const loadingMessages = require('../components/messageStore');
 
 lang = getLang();
 
