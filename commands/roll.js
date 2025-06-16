@@ -18,8 +18,7 @@ const outcomes = [
 //     });
 // };
 
-async function roll(message)
-{
+async function roll(message) {
     const randomOutcome = outcomes[Math.floor(Math.random() * outcomes.length)];
     const imagePath = path.join(__dirname, randomOutcome.image);
     const attachment = new AttachmentBuilder(imagePath);
@@ -27,9 +26,10 @@ async function roll(message)
     const embed = new EmbedBuilder()
         .setColor(0x00AE86)
         .setAuthor({
-            name: `🎲 ${message.author.username} 擲筊: ${randomOutcome.name}`,
+            name: `${message.author.username} 擲筊`,
             iconURL: message.author.displayAvatarURL(),
         })
+        .setTitle(`🎲 結果: **${randomOutcome.name}**`) // Bold formatting works here
         .setImage(`attachment://${path.basename(imagePath)}`)
         .setTimestamp();
 
@@ -37,6 +37,6 @@ async function roll(message)
         embeds: [embed],
         files: [attachment],
     });
-};
+}
 
 module.exports = roll;
