@@ -1,24 +1,17 @@
 const { AttachmentBuilder } = require('discord.js');
 const path = require('path');
-const imageVersion = 2;
-if(imageVersion == 2)
-{
-    const outcomes = [
-    { name: '聖筊', image: '../images/roll/v2/01.gif', weight: 25 },
-    { name: '笑筊', image: '../images/roll/v2/00.gif', weight: 25 },
-    { name: '陰筊', image: '../images/roll/v2/11.gif', weight: 49.99 },
-    { name: '神筊', image: '../images/roll/v2/xx.gif', weight: 0.01 }, // super rare
-    ];
-}
-else
-{
-    const outcomes = [
-    { name: '聖筊', image: '../images/roll/v1/01.png', weight: 25 },
-    { name: '笑筊', image: '../images/roll/v1/00.png', weight: 25 },
-    { name: '陰筊', image: '../images/roll/v1/11.png', weight: 49.99 },
-    { name: '神筊', image: '../images/roll/v1/xx.png', weight: 0.01 }, // super rare
-    ];
-}
+const outcomes = [
+{ name: '聖筊', image: '../images/roll/v2/01.gif', weight: 25 },
+{ name: '笑筊', image: '../images/roll/v2/00.gif', weight: 25 },
+{ name: '陰筊', image: '../images/roll/v2/11.gif', weight: 49.99 },
+{ name: '神筊', image: '../images/roll/v2/xx.gif', weight: 0.01 }, // super rare
+];
+// const outcomes = [
+// { name: '聖筊', image: '../images/roll/v1/01.png', weight: 25 },
+// { name: '笑筊', image: '../images/roll/v1/00.png', weight: 25 },
+// { name: '陰筊', image: '../images/roll/v1/11.png', weight: 49.99 },
+// { name: '神筊', image: '../images/roll/v1/xx.png', weight: 0.01 }, // super rare
+// ];
 
 // Weighted random selection function
 function getWeightedRandom(outcomes) {
