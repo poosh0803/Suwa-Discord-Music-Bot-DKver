@@ -2,9 +2,9 @@ const { AttachmentBuilder } = require('discord.js');
 const path = require('path');
 
 const outcomes = [
-    { name: '笑筊', image: '../images/roll/00.png' },
-    { name: '聖筊', image: '../images/roll/01.png' },
-    { name: '陰筊', image: '../images/roll/11.png' },
+    { name: '笑筊', image: '../images/roll/v1/00.png' },
+    { name: '聖筊', image: '../images/roll/v1/01.png' },
+    { name: '陰筊', image: '../images/roll/v1/11.png' },
 ];
 
 async function roll(message) {
