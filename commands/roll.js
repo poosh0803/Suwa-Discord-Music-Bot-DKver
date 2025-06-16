@@ -27,7 +27,7 @@ async function roll(message)
     const embed = new EmbedBuilder()
         .setColor(0x00AE86)
         .setAuthor({
-            name: `🎲 ${message.author.username} 擲筊: **${randomOutcome.name}**`,
+            name: `🎲 ${message.author.username} 擲筊: ${randomOutcome.name}`,
             iconURL: message.author.displayAvatarURL(),
         })
         .setImage(`attachment://${path.basename(imagePath)}`)
