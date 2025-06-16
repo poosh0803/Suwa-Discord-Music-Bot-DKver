@@ -78,7 +78,7 @@ client.on('messageCreate', (message) => {
             repeat(client, message.guildId, repeatMode, message)
             break;
         case 'roll':
-            roll(message);
+            roll(message, args);
             break;
         default:
             break;

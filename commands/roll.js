@@ -2,18 +2,30 @@ const { AttachmentBuilder } = require('discord.js');
 const path = require('path');
 
 const outcomes = [
-    { name: '笑筊', image: '../images/roll/v1/00.png' },
-    { name: '聖筊', image: '../images/roll/v1/01.png' },
-    { name: '陰筊', image: '../images/roll/v1/11.png' },
+    { name: '聖筊', image: '../images/roll/v1/01.png', weight: 25 },
+    { name: '笑筊', image: '../images/roll/v1/00.png', weight: 25 },
+    { name: '陰筊', image: '../images/roll/v1/11.png', weight: 49.99 },
+    { name: '神筊', image: '../images/roll/v1/xx.png', weight: 0.01 }, // super rare
 ];
 
-async function roll(message) {
-    const randomOutcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+// Weighted random selection function
+function getWeightedRandom(outcomes) {
+    const totalWeight = outcomes.reduce((sum, o) => sum + o.weight, 0);
+    const r = Math.random() * totalWeight;
+    let acc = 0;
+    for (const outcome of outcomes) {
+        acc += outcome.weight;
+        if (r < acc) return outcome;
+    }
+}
+
+async function roll(message, args) {
+    const randomOutcome = getWeightedRandom(outcomes);
     const imagePath = path.join(__dirname, randomOutcome.image);
     const attachment = new AttachmentBuilder(imagePath);
 
     await message.channel.send({
-        content: `🎲 ${message.author} 擲筊: **${randomOutcome.name}**`,
+        content: `🎲 ${message.author}為了 **${args}** 擲筊: **${randomOutcome.name}**`,
         files: [attachment],
     });
 };
