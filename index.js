@@ -15,6 +15,7 @@ const play = require('./commands/play');
 const skip = require('./commands/skip');
 const queue = require('./commands/queue');
 const stop = require('./commands/stop');
+const roll = require('./commands/roll');
 
 
 var repeatMode = 0;
@@ -67,7 +68,6 @@ client.on('messageCreate', (message) => {
             skip(client, message);
             break;
         case 'queue':
-
             queue(client, message);
             break;
         case 'repeat':
@@ -76,7 +76,10 @@ client.on('messageCreate', (message) => {
                 repeatMode = 0;
             }
             repeat(client, message.guildId, repeatMode, message)
-        break;
+            break;
+        case 'roll':
+            roll(message);
+            break;
         default:
             break;
     }
