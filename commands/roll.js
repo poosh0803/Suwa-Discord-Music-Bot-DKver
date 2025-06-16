@@ -24,11 +24,22 @@ async function roll(message, args) {
     const imagePath = path.join(__dirname, randomOutcome.image);
     const attachment = new AttachmentBuilder(imagePath);
     let msg = args.join(" ");
-
-    await message.channel.send({
-        content: `🎲 ${message.author}為了 **${msg}** 擲筊: **${randomOutcome.name}**`,
+    
+    if(!msg)
+    {
+        await message.channel.send({
+        content: `🎲 ${message.author}擲筊: **${randomOutcome.name}**`,
         files: [attachment],
-    });
+        });
+    }
+    else
+    {
+        await message.channel.send({
+            content: `🎲 ${message.author}為了 **${msg}** 擲筊: **${randomOutcome.name}**`,
+            files: [attachment],
+        });
+    }
+
 };
 
 // async function roll(message) {
