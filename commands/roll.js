@@ -23,9 +23,10 @@ async function roll(message, args) {
     const randomOutcome = getWeightedRandom(outcomes);
     const imagePath = path.join(__dirname, randomOutcome.image);
     const attachment = new AttachmentBuilder(imagePath);
+    let msg = args.join(" ");
 
     await message.channel.send({
-        content: `🎲 ${message.author}為了 **${args}** 擲筊: **${randomOutcome.name}**`,
+        content: `🎲 ${message.author}為了 **${msg}** 擲筊: **${randomOutcome.name}**`,
         files: [attachment],
     });
 };
