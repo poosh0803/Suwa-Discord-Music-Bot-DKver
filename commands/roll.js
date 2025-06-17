@@ -1,9 +1,9 @@
 const { AttachmentBuilder } = require('discord.js');
 const path = require('path');
 const outcomes = [
-{ name: '聖筊', image: '../images/roll/v2/01.gif', weight: 25 },
+{ name: '聖筊', image: '../images/roll/v2/01.gif', weight: 49.99 },
 { name: '笑筊', image: '../images/roll/v2/00.gif', weight: 25 },
-{ name: '陰筊', image: '../images/roll/v2/11.gif', weight: 49.99 },
+{ name: '陰筊', image: '../images/roll/v2/11.gif', weight: 25 },
 { name: '神筊', image: '../images/roll/v2/xx.gif', weight: 0.01 }, // super rare
 ];
 // const outcomes = [
