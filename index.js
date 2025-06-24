@@ -80,6 +80,9 @@ client.on('messageCreate', (message) => {
         case 'roll':
             roll(message, args);
             break;
+        case 'pick':
+            pick(message, args);
+            break;
         default:
             break;
     }
