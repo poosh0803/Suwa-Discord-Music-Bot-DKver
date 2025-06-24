@@ -18,6 +18,7 @@ const stop = require('./commands/stop');
 const roll = require('./commands/roll');
 const cat = require("./commands/cat");
 const dog = require("./commands/dog");
+const pick = require("./commands/pick");
 
 
 var repeatMode = 0;
