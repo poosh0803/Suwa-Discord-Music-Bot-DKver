@@ -1,6 +1,4 @@
-const { AttachmentBuilder } = require('discord.js');
-const path = require('path');
-
+const { EmbedBuilder } = require('discord.js');
 
 async function pick(message, args) {
     if (args.length < 2) {
