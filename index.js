@@ -17,6 +17,7 @@ const queue = require('./commands/queue');
 const stop = require('./commands/stop');
 const roll = require('./commands/roll');
 const cat = require("./commands/cat");
+const dog = require("./commands/dog");
 
 
 var repeatMode = 0;
