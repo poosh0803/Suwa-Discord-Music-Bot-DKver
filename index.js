@@ -7,7 +7,7 @@ const { token } = require('./config.json');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { DisTube, RepeatMode } = require("distube");
 const { prefix } = require('./config.json');
-const { cookies } = require("./config.json"); 
+const { cookies } = require("./config.json");
 const repeat = require("./commands/repeat");
 const playSong = require("./events/playSong");
 const addSong = require("./events/addSong");
@@ -51,7 +51,7 @@ client.distube = new DisTube(client, {
         highWaterMark: 1 << 25 // 32 MB buffer
       }
     })
-    ] 
+    ]
 });
 
 client.on('messageCreate', (message) => {
@@ -86,6 +86,9 @@ client.on('messageCreate', (message) => {
             break;
         case 'cat':
             cat(message);
+            break;
+        case 'dog':
+            dog(message);
             break;
         default:
             break;
