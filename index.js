@@ -16,6 +16,7 @@ const skip = require('./commands/skip');
 const queue = require('./commands/queue');
 const stop = require('./commands/stop');
 const roll = require('./commands/roll');
+const cat = require("./commands/cat");
 
 
 var repeatMode = 0;
@@ -82,6 +83,9 @@ client.on('messageCreate', (message) => {
             break;
         case 'pick':
             pick(message, args);
+            break;
+        case 'cat':
+            cat(message);
             break;
         default:
             break;
