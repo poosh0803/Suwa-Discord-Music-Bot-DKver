@@ -28,22 +28,19 @@ async function money(message) {
         // Payment Instructions
         let desc = '**Payment Instructions:**\n';
         for (const instr of data.paymentInstructions) {
-            // Try to extract payer, amount, receiver
             const match = instr.match(/^(\w+) pays \$(\d+\.?\d*) to (\w+)$/);
             if (match) {
                 const payer = `**${match[1]}**`;
-                const amount = `**$${match[2]}**`;
+                const amount = parseFloat(match[2]);
+                const amountStr = amount > 0 ? `🟢**$${amount.toFixed(2)}**` : `🔴**$${amount.toFixed(2)}**`;
                 const receiver = `**${match[3]}**`;
-                desc += `• ${payer} pays `;
-                desc += `\u001b[32m${amount}\u001b[0m to ${receiver}\n`;
+                desc += `• ${payer} pays ${amountStr} to ${receiver}\n`;
             } else {
                 desc += `• ${instr}\n`;
             }
         }
         desc += '\n**Final Status:**\n';
-        // Final Contribution with colored balances
         for (const line of data.finalContribution) {
-            // Try to extract name, contributed, final
             const match = line.match(/^(\w+): contributed \$(\d+\.?\d*) → final contribution \$(\-?\d+\.?\d*)$/);
             if (match) {
                 const name = `**${match[1]}**`;
@@ -51,9 +48,9 @@ async function money(message) {
                 const final = parseFloat(match[3]);
                 let finalStr = '';
                 if (final < 0) {
-                    finalStr = `**\u001b[31m$${final.toFixed(2)}\u001b[0m**`;
+                    finalStr = `🔴**$${final.toFixed(2)}**`;
                 } else {
-                    finalStr = `**\u001b[32m$${final.toFixed(2)}\u001b[0m**`;
+                    finalStr = `🟢**$${final.toFixed(2)}**`;
                 }
                 desc += `${name}: contributed ${contributed} → final balance ${finalStr}\n`;
             } else {
@@ -66,8 +63,9 @@ async function money(message) {
         }
         desc += '\n**Balance Change:**\n';
         for (const [name, amount] of Object.entries(data.balanceChange)) {
-            const sign = amount > 0 ? '+' : '';
-            desc += `${name}: ${sign}${amount}\n`;
+            let sign = amount > 0 ? '+' : '';
+            let colorEmoji = amount > 0 ? '🟢' : '🔴';
+            desc += `${name}: ${colorEmoji}${sign}${amount}\n`;
         }
 
         const embed = new EmbedBuilder()
