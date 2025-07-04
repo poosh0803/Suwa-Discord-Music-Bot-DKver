@@ -4,7 +4,7 @@ const https = require('https');
 async function fetchMoneyData() {
     return new Promise((resolve, reject) => {
         // TODO: Replace with your actual API endpoint
-        const url = 'https://your-api.com/money';
+        const url = 'http://127.0.0.1:3300';
         https.get(url, (res) => {
             let data = '';
             res.on('data', chunk => data += chunk);
