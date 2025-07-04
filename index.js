@@ -19,6 +19,7 @@ const roll = require('./commands/roll');
 const cat = require("./commands/cat");
 const dog = require("./commands/dog");
 const pick = require("./commands/pick");
+const money = require("./commands/money");
 
 
 var repeatMode = 0;
@@ -91,6 +92,9 @@ client.on('messageCreate', (message) => {
             break;
         case 'dog':
             dog(message);
+            break;
+        case 'money':
+            money(message);
             break;
         default:
             break;
