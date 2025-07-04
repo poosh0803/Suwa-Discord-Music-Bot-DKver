@@ -25,9 +25,42 @@ async function fetchMoneyData() {
 async function money(message) {
     try {
         const data = await fetchMoneyData();
-        let desc = '**Payment Instructions:**\n' + data.paymentInstructions.join('\n') + '\n\n';
-        desc += '**Final Contribution:**\n' + data.finalContribution.join('\n') + '\n\n';
-        desc += '**Descriptions:**\n';
+        // Payment Instructions
+        let desc = '**Payment Instructions:**\n';
+        for (const instr of data.paymentInstructions) {
+            // Try to extract payer, amount, receiver
+            const match = instr.match(/^(\w+) pays \$(\d+\.?\d*) to (\w+)$/);
+            if (match) {
+                const payer = `**${match[1]}**`;
+                const amount = `**$${match[2]}**`;
+                const receiver = `**${match[3]}**`;
+                desc += `• ${payer} pays `;
+                desc += `\u001b[32m${amount}\u001b[0m to ${receiver}\n`;
+            } else {
+                desc += `• ${instr}\n`;
+            }
+        }
+        desc += '\n**Final Status:**\n';
+        // Final Contribution with colored balances
+        for (const line of data.finalContribution) {
+            // Try to extract name, contributed, final
+            const match = line.match(/^(\w+): contributed \$(\d+\.?\d*) → final contribution \$(\-?\d+\.?\d*)$/);
+            if (match) {
+                const name = `**${match[1]}**`;
+                const contributed = `$${match[2]}`;
+                const final = parseFloat(match[3]);
+                let finalStr = '';
+                if (final < 0) {
+                    finalStr = `**\u001b[31m$${final.toFixed(2)}\u001b[0m**`;
+                } else {
+                    finalStr = `**\u001b[32m$${final.toFixed(2)}\u001b[0m**`;
+                }
+                desc += `${name}: contributed ${contributed} → final balance ${finalStr}\n`;
+            } else {
+                desc += `${line}\n`;
+            }
+        }
+        desc += '\n**Descriptions:**\n';
         for (const [name, d] of Object.entries(data.descriptions)) {
             desc += `${name}: ${d}\n`;
         }
