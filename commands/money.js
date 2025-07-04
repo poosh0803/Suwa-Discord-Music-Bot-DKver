@@ -4,7 +4,7 @@ const https = require('https');
 async function fetchMoneyData() {
     return new Promise((resolve, reject) => {
         // TODO: Replace with your actual API endpoint
-        const url = 'http://127.0.0.1:3300';
+        const url = 'http://127.0.0.1:3300/api/discord';
         https.get(url, (res) => {
             let data = '';
             res.on('data', chunk => data += chunk);
