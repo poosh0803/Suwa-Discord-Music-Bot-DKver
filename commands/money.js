@@ -29,6 +29,11 @@ async function money(message) {
         for (const [name, d] of Object.entries(data.descriptions)) {
             desc += `${name}: ${d}\n`;
         }
+        desc += '\n**Balance Change:**\n';
+        for (const [name, amount] of Object.entries(data.balanceChange)) {
+            const sign = amount > 0 ? '+' : '';
+            desc += `${name}: ${sign}${amount}\n`;
+        }
 
         const embed = new EmbedBuilder()
             .setColor(0x3498db)
