@@ -67,6 +67,7 @@ async function money(message) {
             let colorEmoji = amount > 0 ? '🟢' : '🔴';
             desc += `${name}: ${colorEmoji}${sign}${amount}\n`;
         }
+        desc += '\n[More info](https://money.dkpoosh.com)';
 
         const embed = new EmbedBuilder()
             .setColor(0x3498db)
